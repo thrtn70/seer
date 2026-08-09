@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Seer</title>
+        <item>
+            <title>0.2.0</title>
+            <pubDate>Sun, 09 Aug 2026 03:01:52 -0700</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<h2>Seer 0.2.0</h2>
+
+<p>The first update since 0.1.0, and the release that makes every future update painless.</p>
+
+<h3>Settings</h3>
+<ul>
+  <li>A proper Settings window, with General, Apps, Suggestions and Style tabs.</li>
+  <li>Per-app control: pause Seer in the apps where you don't want it, and it stays paused.</li>
+  <li>Tune suggestion length, how eagerly Seer offers one, and how the ghost text looks.</li>
+</ul>
+
+<h3>Menu bar</h3>
+<ul>
+  <li>Status at a glance, with how many suggestions you accepted this session.</li>
+  <li>When Seer isn't running yet, the menu now tells you exactly what it's waiting for.</li>
+</ul>
+
+<h3>Style</h3>
+<ul>
+  <li>Seer learns how you write and leans that way in its suggestions.</li>
+  <li>Everything it learns stays on your Mac, encrypted. From the Style tab you can see what it
+      picked up, pin any part of it by hand, export it, or erase it.</li>
+</ul>
+
+<h3>Updates</h3>
+<ul>
+  <li>Seer updates itself now. Check any time from the menu bar.</li>
+  <li>The language model has moved out of the app: it downloads once on first run and is
+      verified before it's used. Updates are a few megabytes instead of a gigabyte, and they
+      never re-download a model you already have.</li>
+</ul>
+
+<p>Requires an Apple Silicon Mac on macOS 14 or later. Still entirely offline — nothing you type
+leaves your Mac.</p>
+]]></description>
+            <enclosure url="https://github.com/thrtn70/seer/releases/download/v0.2.0/Seer-0.2.0.zip" length="4861058" type="application/octet-stream" sparkle:edSignature="1xQGfzu+VsuqWR+yKTwJ8fCWDwTQQxwR3oF4TLziX9SykLaz5Q5vWyjeNnlADQ2+tmPVx3FjBZN9wLGO9okCDA=="/>
+        </item>
+    </channel>
+</rss>
