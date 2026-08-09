@@ -3,7 +3,10 @@ import SeerModel
 
 @MainActor
 public final class InlineRenderer: SuggestionRenderer {
-    private let ghostPanel = GhostPanel()
+    // Internal, not private (unlike PillRenderer's): SeerCoordinatorTests' dismiss-before-drop
+    // guard reads `ghostPanel.panel.isVisible` to prove clear() ran before the renderer was
+    // dropped. Deliberate asymmetry — don't "tidy" it back to private.
+    let ghostPanel = GhostPanel()
     private let label = NSTextField(labelWithString: "")
     private var mode: RenderMode?
 

@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.1.0</string>
+    <string>0.2.0</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>3</string>
     <key>LSMinimumSystemVersion</key>
     <string>14.0</string>
     <key>NSPrincipalClass</key>
@@ -24,5 +24,15 @@
     <true/>
     <key>NSAccessibilityUsageDescription</key>
     <string>Seer reads the focused text field to place inline autocomplete suggestions.</string>
+    <key>SUFeedURL</key>
+    <string>https://thrtn70.github.io/seer/appcast.xml</string>
+    <key>SUPublicEDKey</key>
+    <string>S7ExMsHnn0/CVFkJlxPUaYa4tau8KJyit6sYyWHvmIM=</string>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUScheduledCheckInterval</key>
+    <integer>86400</integer>
+    <key>SUAutomaticallyUpdate</key>
+    <false/>
 </dict>
 </plist>

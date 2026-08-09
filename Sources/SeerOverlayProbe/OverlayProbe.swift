@@ -99,7 +99,8 @@ final class OverlayProbe {
         }
         let loaded: LlamaCppEngine
         do {
-            let modelPath = try ModelLocator.resolve(filename: "qwen2.5-1.5b-instruct-q4_k_m.gguf")
+            // No applicationSupportDirectory: the probe resolves vendor/ deterministically.
+            let modelPath = try ModelLocator.resolve(filename: ModelSpec.filename)
             loaded = try LlamaCppEngine(modelPath: modelPath)
         } catch {
             FileHandle.standardError.write(Data("[overlay] FAILED to load model: \(error)\n".utf8))

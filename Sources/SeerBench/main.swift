@@ -10,7 +10,8 @@ import SeerSupport
 //               (incremental-decode) time-to-first-token is sub-100 ms and beats cold
 //               (full-prefill) TTFT through one shared engine instance.
 
-let modelFilename = "qwen2.5-1.5b-instruct-q4_k_m.gguf"
+// No applicationSupportDirectory: the bench must resolve vendor/ deterministically.
+let modelFilename = ModelSpec.filename
 
 if CommandLine.arguments.contains("--help") {
     print("""

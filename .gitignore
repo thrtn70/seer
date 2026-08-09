@@ -3,3 +3,7 @@
 vendor/
 build/
 *.gguf
+# Sparkle EdDSA private-key exports must never be committed. The documented backup recipe
+# writes outside the repo, but this is the safety net if one is ever produced in-tree.
+*.key
+

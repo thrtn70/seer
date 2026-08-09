@@ -19,4 +19,11 @@ public enum WordTokenizer {
         if !current.isEmpty { chunks.append(current) }
         return chunks
     }
+
+    /// Number of words in `s`: chunks containing at least one non-space character.
+    /// ("issued " → 1, "  " → 0.) "Space" means ASCII ' ' only, matching `wordChunks`.
+    /// Used to count words actually inserted on accept.
+    public static func wordCount(of s: String) -> Int {
+        wordChunks(s).filter { !$0.allSatisfy { $0 == " " } }.count
+    }
 }

@@ -13,4 +13,25 @@ import Testing
     @Test func leadingSpaceStaysWithFirstChunk() {
         #expect(WordTokenizer.wordChunks(" world here") == [" world ", "here"])
     }
+    @Test func countsWordsInFullLine() {
+        #expect(WordTokenizer.wordCount(of: "issued a full refund") == 4)
+    }
+    @Test func trailingSpacesDoNotAddWords() {
+        #expect(WordTokenizer.wordCount(of: "issued ") == 1)
+    }
+    @Test func leadingSpaceDoesNotAddAWord() {
+        #expect(WordTokenizer.wordCount(of: " world here") == 2)
+    }
+    @Test func emptyStringHasZeroWords() {
+        #expect(WordTokenizer.wordCount(of: "") == 0)
+    }
+    @Test func allSpacesHaveZeroWords() {
+        #expect(WordTokenizer.wordCount(of: "  ") == 0)
+    }
+    @Test func multipleSpacesBetweenWordsCountOnce() {
+        #expect(WordTokenizer.wordCount(of: "a  b") == 2)
+    }
+    @Test func punctuationRunCountsAsWord() {
+        #expect(WordTokenizer.wordCount(of: "refund.") == 1)
+    }
 }

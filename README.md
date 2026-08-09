@@ -20,8 +20,9 @@ brew install --cask seer
 ```
 
 First launch asks for **Accessibility** and **Input Monitoring** — Seer needs both to read
-the focused text field and to detect Tab/Esc. Grant them in the window that appears; it
-continues automatically once both are on.
+the focused text field and to detect Tab/Esc — and downloads the language model
+(~1.1 GB, once). The setup window shows both; Seer starts suggesting automatically as soon as
+the permissions are on and the download has finished.
 
 Seer is un-notarized (personal project, self-signed). The cask clears the quarantine flag
 on install; if Gatekeeper still complains, right-click Seer.app → Open → Open.
@@ -32,7 +33,11 @@ on install; if Gatekeeper still complains, right-click Seer.app → Open → Ope
 scripts/fetch-llama.sh    # llama.cpp xcframework (pinned tag)
 scripts/fetch-model.sh    # Qwen 2.5 1.5B instruct GGUF (~1 GB)
 swift test                # unit tests
-scripts/build-app.sh      # -> build/Seer.app (details in docs/packaging.md)
+scripts/build-app.sh      # -> ~/Library/Caches/seer-build/Seer.app (details in docs/packaging.md)
 ```
 
 `swift run SeerAgent` also works for development (the model is resolved from `vendor/`).
+
+The packaged app does **not** bundle the model: on first launch it downloads the GGUF (~1.1 GB,
+checksum-verified) to `~/Library/Application Support/Seer/models/`, so app updates stay small.
+See [docs/packaging.md](docs/packaging.md).

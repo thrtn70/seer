@@ -43,6 +43,32 @@ import Foundation
         #expect(resolved == modelPath)
     }
 
+    @Test func prefersApplicationSupportOverBundle() throws {
+        let dir = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("seer.modeltest.\(UInt64.random(in: 0...(.max)))", isDirectory: true)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let modelPath = dir.appendingPathComponent("model.gguf").path
+        FileManager.default.createFile(atPath: modelPath, contents: Data("x".utf8))
+
+        let resolved = try ModelLocator.resolve(
+            filename: "model.gguf",
+            applicationSupportDirectory: dir.path,
+            bundleLookup: { _, _ in URL(fileURLWithPath: "/bundle/model.gguf") },   // must lose
+            devDirectory: "/should/not/be/used")
+        #expect(resolved == modelPath)
+    }
+
+    @Test func fallsThroughWhenApplicationSupportIsEmpty() throws {
+        let bundleURL = URL(fileURLWithPath: "/bundle/Resources/model.gguf")
+        let resolved = try ModelLocator.resolve(
+            filename: "model.gguf",
+            applicationSupportDirectory: "/nonexistent-\(UInt64.random(in: 0...(.max)))",
+            bundleLookup: { _, _ in bundleURL },
+            devDirectory: "/unused")
+        #expect(resolved == bundleURL.path)
+    }
+
     @Test func throwsNotFoundWhenMissingEverywhere() {
         #expect(throws: ModelLocatorError.notFound("model.gguf")) {
             try ModelLocator.resolve(

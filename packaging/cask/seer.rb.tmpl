@@ -1,0 +1,40 @@
+cask "seer" do
+  version "@@VERSION@@"
+  sha256 "@@SHA256@@"
+
+  url "https://github.com/thrtn70/seer/releases/download/v#{version}/Seer-#{version}.zip"
+  name "Seer"
+  desc "On-device inline autocomplete for any macOS text field"
+  homepage "https://github.com/thrtn70/seer"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  # Seer updates itself through Sparkle, so Homebrew should not treat a newer version as
+  # something it has to install over the top.
+  auto_updates true
+
+  depends_on macos: :sonoma
+  depends_on arch: :arm64
+
+  app "Seer.app"
+
+  # Un-notarized personal build: clear the quarantine flag so Gatekeeper doesn't block launch.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Seer.app"],
+                   sudo: false
+  end
+
+  zap trash: [
+    "~/Library/Preferences/app.seer.agent.plist",
+    # Holds the downloaded language model (~1.1 GB) and the style profile.
+    "~/Library/Application Support/Seer",
+    # Sparkle's PersistentDownloads store, which keeps an app-sized zip per update because the
+    # payload is the whole .app, plus the feed's URL cache.
+    "~/Library/Caches/app.seer.agent",
+    "~/Library/HTTPStorages/app.seer.agent",
+  ]
+end
